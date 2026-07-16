@@ -1,0 +1,71 @@
+export const theme = {
+  colors: {
+    background: "#ffffff",
+    foreground: "#1a1a1a",
+    primary: "#1a1a1a",
+    primaryHover: "#000000",
+    muted: "#6b7280",
+    subtle: "#9ca3af",
+    border: "#e5e7eb",
+    borderLight: "#f3f4f6",
+    success: "#22c55e",
+    white: "#ffffff",
+    trail: "rgba(26, 26, 26, 0.4)",
+    cursorRing: "rgba(26, 26, 26, 0.05)",
+    cursorRingBorder: "rgba(26, 26, 26, 0.2)",
+  },
+  fonts: {
+    sans: "var(--font-hanken-grotesk), var(--font-inter), sans-serif",
+  },
+  layout: {
+    portrait: {
+      width: "38%",
+      widthMobile: "62%",
+      maxWidth: "420px",
+      imageWidth: 540,
+      imageHeight: 720,
+      offsetTop: "-2.5rem",
+    },
+    heroName: {
+      fontSize: "11vw",
+      fontSizeMobile: "14vw",
+    },
+  },
+  zIndex: {
+    heroName: 10,
+    portrait: 20,
+    floating: 30,
+    header: 50,
+    trail: 9999,
+    cursor: 10000,
+  },
+  cursor: {
+    size: 8,
+    sizeHover: 32,
+    trailDotSize: 4,
+    maxTrailDots: 8,
+  },
+  bubble: {
+    maxCount: 40,
+  },
+} as const;
+
+export const cssVariables: Record<string, string> = {
+  "--background": theme.colors.background,
+  "--foreground": theme.colors.foreground,
+  "--primary": theme.colors.primary,
+  "--primary-hover": theme.colors.primaryHover,
+  "--muted": theme.colors.muted,
+  "--subtle": theme.colors.subtle,
+  "--border": theme.colors.border,
+  "--border-light": theme.colors.borderLight,
+  "--success": theme.colors.success,
+  "--trail": theme.colors.trail,
+  "--cursor-ring": theme.colors.cursorRing,
+  "--cursor-ring-border": theme.colors.cursorRingBorder,
+  "--portrait-width": theme.layout.portrait.width,
+  "--portrait-width-mobile": theme.layout.portrait.widthMobile,
+  "--portrait-max-width": theme.layout.portrait.maxWidth,
+  "--hero-name-size": theme.layout.heroName.fontSize,
+  "--hero-name-size-mobile": theme.layout.heroName.fontSizeMobile,
+};

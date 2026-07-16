@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Subodh Rijal - MERN Developer Portfolio</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Hanken+Grotesk:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-typography">
+        body {
+            font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+        }
+        /* Outlined text effect for the first part of the name */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+        .text-solid {
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+    </style>
+<style data-purpose="glassmorphism-effects">
+        /* Subtle glassmorphism and card effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .main-container-outer {
+            background-color: white;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            cursor: none; /* Hide cursor for custom trail */
+        }
+    </style>
+<style data-purpose="layout-positioning">
+        /* Positioning for the background text and portrait */
+        .hero-name-bg {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11vw;
+            font-weight: 900;
+            line-height: 1;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .portrait-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            z-index: 20;
+            overflow: hidden;
+        }
+        .floating-card-left {
+            position: absolute;
+            top: 55%;
+            left: 8%;
+            z-index: 30;
+            max-width: 280px;
+            pointer-events: auto;
+        }
+        .social-links-right {
+            position: absolute;
+            top: 58%;
+            right: 8%;
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: auto;
+        }
+
+        /* Bubble Reveal Effect Styles */
+        .flashlight-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            cursor: crosshair;
+        }
+        .image-grayscale {
+            filter: grayscale(100%);
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .bubble-mask-canvas {
+            position: absolute;
+            top: -40px; /* Matching the margin-top of the images */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        /* Using CSS mask to reveal the color image via the canvas */
+        .image-color-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=='); /* Default hidden */
+            mask-image: none;
+        }
+        #reveal-canvas {
+            display: none; /* We use it as a mask source */
+        }
+
+        /* Mouse Trail - Improved and Professional */
+        .trail-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(26, 26, 26, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+        .cursor-main {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #1a1a1a;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s cubic-bezier(0.23, 1, 0.32, 1), 
+                        height 0.2s cubic-bezier(0.23, 1, 0.32, 1), 
+                        background-color 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-white antialiased overflow-hidden">
+<!-- BEGIN: Mouse Trail Container -->
+<div class="cursor-main" id="cursor-main"></div>
+<!-- END: Mouse Trail Container -->
+<!-- BEGIN: MainContainer -->
+<div class="main-container-outer" data-purpose="page-wrapper">
+<!-- BEGIN: Navigation -->
+<header class="relative z-50 px-10 py-8 flex justify-between items-center" data-purpose="main-header">
+<!-- Status Badge -->
+<div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100 text-xs font-medium text-gray-700" data-purpose="availability-badge">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                Available for New Project
+            </div>
+<!-- Main Nav Links -->
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-800" data-purpose="navigation-menu">
+<a class="hover:text-black transition-colors" href="#">Skills <span class="text-[10px] align-top text-gray-400 ml-0.5">[12]</span></a>
+<a class="hover:text-black transition-colors" href="#">Service <span class="text-[10px] align-top text-gray-400 ml-0.5">[4]</span></a>
+<a class="hover:text-black transition-colors" href="#">Experience <span class="text-[10px] align-top text-gray-400 ml-0.5">[5y+]</span></a>
+<a class="hover:text-black transition-colors" href="#">Contact</a>
+</nav>
+<!-- CTA Button -->
+<button class="bg-[#1a1a1a] text-white px-6 py-2.5 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-black transition-all group" data-purpose="cta-button">
+                Let's Talk
+                <svg class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><line x1="7" x2="17" y1="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+</button>
+</header>
+<!-- END: Navigation -->
+<!-- BEGIN: Hero Section Background Text -->
+<div class="hero-name-bg" data-purpose="background-text">
+<span class="text-outline uppercase">SUBODH</span>
+<span class="text-solid uppercase ml-4">RIJAL</span>
+</div>
+<!-- END: Hero Section Background Text -->
+<!-- BEGIN: Developer Portrait with Bubble Reveal Effect -->
+<div class="portrait-wrapper group" data-purpose="main-portrait" id="portrait-bubble-trigger">
+<div class="flashlight-container relative overflow-hidden">
+<!-- Base Grayscale Image -->
+<img alt="Subodh Rijal Portrait Grayscale" class="image-grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsFrjxk6EndyyY3fWCiE2z9HkPZS7vK4Oz3Nrc-qVemHSIXH2zu0g3gfso_P2AVT5ouxibmZT0Yog3Vxyfh0fY8FaiXLaOksCOJVy921zjU7wbkSD9SIVM7VjCiMUPsOu7O0UammRWrbjwgC5Q33N6kxr7k9ITBS8Fnqfj3cT60qL8UO8hB6tWf3_YIc1H4tTRlpIUnVuO_DA5WRuVquA6DiJC_lDByR2ztfkpPfRphgyZ6vrGEwFtyTkbJpVNiyvP50W8xKcbBFL4" style="margin-top: -40px;"/>
+<!-- Color Image revealed via masking -->
+<div class="absolute inset-0 pointer-events-none" id="color-reveal-layer" style="margin-top: -40px;">
+<img alt="Subodh Rijal Portrait Color" class="w-full h-auto block" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsFrjxk6EndyyY3fWCiE2z9HkPZS7vK4Oz3Nrc-qVemHSIXH2zu0g3gfso_P2AVT5ouxibmZT0Yog3Vxyfh0fY8FaiXLaOksCOJVy921zjU7wbkSD9SIVM7VjCiMUPsOu7O0UammRWrbjwgC5Q33N6kxr7k9ITBS8Fnqfj3cT60qL8UO8hB6tWf3_YIc1H4tTRlpIUnVuO_DA5WRuVquA6DiJC_lDByR2ztfkpPfRphgyZ6vrGEwFtyTkbJpVNiyvP50W8xKcbBFL4"/>
+</div>
+<!-- Canvas for dynamic masking -->
+<canvas class="hidden" id="mask-canvas"></canvas>
+</div>
+</div>
+<!-- END: Developer Portrait -->
+<!-- BEGIN: Hero Content Card (Left) -->
+<div class="floating-card-left" data-purpose="hero-bio-card">
+<h1 class="text-4xl font-bold text-gray-900 mb-4 leading-tight">MERN Developer</h1>
+<p class="text-gray-500 text-sm leading-relaxed mb-6">
+                Architecting robust web applications that are scalable, efficient, and user-centric. Focused on the modern web stack.
+            </p>
+<button class="bg-[#1a1a1a] text-white px-6 py-3 rounded-full text-sm font-medium flex items-center gap-2 hover:scale-105 transition-transform" data-purpose="collaboration-button">
+                Let's collaborate
+                <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><line x1="7" x2="17" y1="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+</button>
+</div>
+<!-- END: Hero Content Card (Left) -->
+<!-- BEGIN: Social Links (Right) -->
+<div class="social-links-right" data-purpose="social-sidebar">
+<a class="flex items-center justify-between gap-4 px-4 py-2 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors bg-white/50" href="#">
+<span class="flex items-center gap-2">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    Github
+                </span>
+</a>
+<a class="flex items-center justify-between gap-4 px-4 py-2 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors bg-white/50" href="#">
+<span class="flex items-center gap-2">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </span>
+</a>
+<a class="flex items-center justify-between gap-4 px-4 py-2 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors bg-white/50" href="#">
+<span class="flex items-center gap-2">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    Whatsapp
+                </span>
+</a>
+<a class="flex items-center justify-between gap-4 px-4 py-2 border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors bg-white/50" href="#">
+<span class="flex items-center gap-2">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                    Instagram
+                </span>
+</a>
+</div>
+<!-- END: Social Links (Right) -->
+</div>
+<!-- END: MainContainer -->
+<script>
+        (function() {
+            // --- 1. Mouse Trail Logic ---
+            const cursorMain = document.getElementById('cursor-main');
+            const maxDots = 8;
+            let dots = [];
+
+            function updateCursor(e) {
+                const { clientX: x, clientY: y } = e;
+                cursorMain.style.left = `${x}px`;
+                cursorMain.style.top = `${y}px`;
+
+                if (Math.random() > 0.4) {
+                    const dot = document.createElement('div');
+                    dot.className = 'trail-dot';
+                    dot.style.left = `${x}px`;
+                    dot.style.top = `${y}px`;
+                    document.body.appendChild(dot);
+                    dots.push(dot);
+
+                    requestAnimationFrame(() => {
+                        dot.style.opacity = '0';
+                        dot.style.transform = 'translate(-50%, -50%) scale(0.1)';
+                    });
+
+                    if (dots.length > maxDots) {
+                        const oldest = dots.shift();
+                        setTimeout(() => oldest.remove(), 400);
+                    }
+                }
+            }
+            document.addEventListener('mousemove', updateCursor);
+
+            const interactives = document.querySelectorAll('button, a');
+            interactives.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorMain.style.width = '32px';
+                    cursorMain.style.height = '32px';
+                    cursorMain.style.backgroundColor = 'rgba(26, 26, 26, 0.05)';
+                    cursorMain.style.border = '1px solid rgba(26, 26, 26, 0.2)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorMain.style.width = '8px';
+                    cursorMain.style.height = '8px';
+                    cursorMain.style.backgroundColor = '#1a1a1a';
+                    cursorMain.style.border = 'none';
+                });
+            });
+
+            // --- 2. Bubble Physics Reveal Logic ---
+            const canvas = document.getElementById('mask-canvas');
+            const ctx = canvas.getContext('2d');
+            const trigger = document.getElementById('portrait-bubble-trigger');
+            const revealLayer = document.getElementById('color-reveal-layer');
+            
+            let bubbles = [];
+            const MAX_BUBBLES = 40;
+            
+            function resizeCanvas() {
+                const rect = trigger.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Bubble {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = 5;
+                    this.maxRadius = Math.random() * 40 + 60;
+                    this.growthRate = Math.random() * 2 + 3;
+                    this.opacity = 1;
+                    this.decay = 0.015 + Math.random() * 0.01;
+                    this.vx = (Math.random() - 0.5) * 1.5;
+                    this.vy = (Math.random() - 0.5) * 1.5;
+                }
+
+                update() {
+                    if (this.radius < this.maxRadius) {
+                        this.radius += this.growthRate;
+                    }
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.opacity -= this.decay;
+                }
+
+                draw(context) {
+                    context.beginPath();
+                    context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    context.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    context.fill();
+                }
+            }
+
+            function handleMouseMove(e) {
+                const rect = trigger.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Add bubble if moving mouse
+                if (bubbles.length < MAX_BUBBLES) {
+                    bubbles.push(new Bubble(x, y));
+                }
+            }
+
+            trigger.addEventListener('mousemove', handleMouseMove);
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Keep some persistence of mask
+                ctx.fillStyle = 'rgba(0,0,0,0)'; 
+                ctx.fillRect(0,0, canvas.width, canvas.height);
+
+                for (let i = bubbles.length - 1; i >= 0; i--) {
+                    bubbles[i].update();
+                    bubbles[i].draw(ctx);
+                    if (bubbles[i].opacity <= 0) {
+                        bubbles.splice(i, 1);
+                    }
+                }
+
+                // Apply mask to the color reveal layer
+                if (bubbles.length > 0) {
+                    const maskData = canvas.toDataURL();
+                    revealLayer.style.webkitMaskImage = `url(${maskData})`;
+                    revealLayer.style.maskImage = `url(${maskData})`;
+                    revealLayer.style.webkitMaskRepeat = 'no-repeat';
+                    revealLayer.style.maskRepeat = 'no-repeat';
+                    revealLayer.style.webkitMaskSize = '100% 100%';
+                    revealLayer.style.maskSize = '100% 100%';
+                } else {
+                    revealLayer.style.webkitMaskImage = 'none';
+                    revealLayer.style.maskImage = 'none';
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            // Start animation loop
+            animate();
+        })();
+    </script>
+</body></html>
