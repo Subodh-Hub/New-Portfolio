@@ -59,33 +59,35 @@ export function HeroSection() {
           "hero-details+=0.12",
         );
 
-      const scrollTrigger = {
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5,
-      };
+      if (window.matchMedia("(min-width: 769px)").matches) {
+        const scrollTrigger = {
+          trigger: section,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.5,
+        };
 
-      gsap.to(".floating-card-left", {
-        xPercent: -180,
-        ease: "none",
-        yoyo: true,
-        scrollTrigger,
-      });
+        gsap.to(".floating-card-left", {
+          xPercent: -180,
+          ease: "none",
+          yoyo: true,
+          scrollTrigger,
+        });
 
-      gsap.to(".social-links-right", {
-        xPercent: 180,
-        ease: "none",
-        yoyo: true,
-        scrollTrigger,
-      });
+        gsap.to(".social-links-right", {
+          xPercent: 180,
+          ease: "none",
+          yoyo: true,
+          scrollTrigger,
+        });
 
-      gsap.to(".portrait-wrapper", {
-        y: () => window.innerHeight * 1,
-        ease: "none",
-        yoyo: true,
-        scrollTrigger: { ...scrollTrigger, invalidateOnRefresh: true },
-      });
+        gsap.to(".portrait-wrapper", {
+          y: () => window.innerHeight * 1,
+          ease: "none",
+          yoyo: true,
+          scrollTrigger: { ...scrollTrigger, invalidateOnRefresh: true },
+        });
+      }
     }, section);
 
     return () => context.revert();

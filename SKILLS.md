@@ -1,15 +1,7 @@
-Now create the skill section
-one div of width 100% and height of about 40% should appear from top to bottom with scrollTrigger effect
-and that div should contain these skills 
-skills should move in craousel with the grayscale logo and when hover it should shows up to the original color
+Now make my Header,HeroSection, SkillsSection and ServicesSection responsivee
 
-my skills are
-i know programming language JS, TS, Java
+I want Interactive Hamburger Menu when itt is click my menu item should appear in full screen for mobile device
 
-i am familiar with the framework like nextjs, nest , express, nodejs
-also i know react
-frontend skills like tailwindcss, figma, scss, shadecn
-i know the tools like github, zustand, postman, mysql
-
-
+I want my logo appear with the beautiful loading effect with gsap
+and after loadingg is complete make show Hello, Namaste, Bonjour,Nihau in chinese font, japanese font, arabic font one at a time effect
 

@@ -21,7 +21,9 @@ export function ServicesSection() {
             <h3>{service.title}</h3>
             <p>{service.description}</p>
             <div className="service-tags">
-              {service.tags.map((tag) => <span key={tag}>{tag}</span>)}
+              {service.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
             </div>
           </article>
         ))}

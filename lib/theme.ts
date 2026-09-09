@@ -19,12 +19,14 @@ export const theme = {
   },
   layout: {
     portrait: {
-      width: "38%",
-      widthMobile: "62%",
-      maxWidth: "420px",
-      imageWidth: 540,
-      imageHeight: 720,
-      offsetTop: "-2.5rem",
+      width: "46%",
+      widthMobile: "78%",
+      maxWidth: "560px",
+      imageWidth: 640,
+      imageHeight: 860,
+      offsetTop: "0",
+      offsetTopMobile: "0",
+      heightDesktop: "78vh",
     },
     heroName: {
       fontSize: "11vw",
@@ -66,6 +68,9 @@ export const cssVariables: Record<string, string> = {
   "--portrait-width": theme.layout.portrait.width,
   "--portrait-width-mobile": theme.layout.portrait.widthMobile,
   "--portrait-max-width": theme.layout.portrait.maxWidth,
+  "--portrait-offset-top": theme.layout.portrait.offsetTop,
+  "--portrait-offset-top-mobile": theme.layout.portrait.offsetTopMobile,
+  "--portrait-height-desktop": theme.layout.portrait.heightDesktop,
   "--hero-name-size": theme.layout.heroName.fontSize,
   "--hero-name-size-mobile": theme.layout.heroName.fontSizeMobile,
 };

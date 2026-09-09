@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, Inter } from "next/font/google";
+import {
+  Great_Vibes,
+  Hanken_Grotesk,
+  Inter,
+  Noto_Sans_Arabic,
+  Noto_Sans_JP,
+  Noto_Sans_SC,
+} from "next/font/google";
 import { cssVariables } from "@/lib/theme";
 import "./globals.css";
 
@@ -13,6 +20,30 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const notoSc = Noto_Sans_SC({
+  variable: "--font-noto-sc",
+  subsets: ["latin"],
+  weight: ["700"],
+});
+
+const notoJp = Noto_Sans_JP({
+  variable: "--font-noto-jp",
+  subsets: ["latin"],
+  weight: ["700"],
+});
+
+const notoAr = Noto_Sans_Arabic({
+  variable: "--font-noto-ar",
+  subsets: ["arabic"],
+  weight: ["700"],
+});
+
+const script = Great_Vibes({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hankenGrotesk.variable} ${inter.variable} h-full antialiased`}
+      className={`${hankenGrotesk.variable} ${inter.variable} ${notoSc.variable} ${notoJp.variable} ${notoAr.variable} ${script.variable} h-full antialiased`}
       style={cssVariables}
     >
       <body

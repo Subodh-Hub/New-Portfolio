@@ -11,11 +11,17 @@ export function MouseTrail() {
   useEffect(() => {
     if (!cursorRef.current) return;
     const cursorEl: HTMLDivElement = cursorRef.current;
+    const skillsSection = document.getElementById("skills");
 
     const dots: HTMLDivElement[] = [];
 
     function updateCursor(e: MouseEvent) {
       const { clientX: x, clientY: y } = e;
+      const trailEnabled = !skillsSection || y < skillsSection.getBoundingClientRect().top;
+
+      cursorEl.style.display = trailEnabled ? "block" : "none";
+      if (!trailEnabled) return;
+
       cursorEl.style.left = `${x}px`;
       cursorEl.style.top = `${y}px`;
 

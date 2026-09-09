@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { PROFILE_IMAGE, PROFILE_REVEAL_IMAGE } from "@/lib/data";
 import { theme } from "@/lib/theme";
 
-const { imageWidth, imageHeight, offsetTop } = theme.layout.portrait;
+const { imageWidth, imageHeight } = theme.layout.portrait;
 const BRUSH_SIZE = 82;
 const BRUSH_SQUASH = 0.52;
 const FADE = 0.93;
@@ -121,14 +121,13 @@ export function PortraitReveal() {
 
   return (
     <div className="portrait-wrapper" style={{ opacity: 0, visibility: "hidden" }}>
-      <div ref={containerRef} className="flashlight-container overflow-hidden">
+      <div ref={containerRef} className="flashlight-container">
         <Image
           src={PROFILE_IMAGE}
           alt="Subodh Rijal portrait"
           width={imageWidth}
           height={imageHeight}
-          className="image-grayscale"
-          style={{ marginTop: offsetTop }}
+          className="image-grayscale portrait-image"
           priority
         />
         <Image
@@ -137,9 +136,8 @@ export function PortraitReveal() {
           alt=""
           width={imageWidth}
           height={imageHeight}
-          className="pointer-events-none absolute inset-0 h-auto w-full opacity-0"
+          className="portrait-image pointer-events-none absolute inset-0 opacity-0"
           style={{
-            marginTop: offsetTop,
             WebkitMaskRepeat: "no-repeat",
             maskRepeat: "no-repeat",
             WebkitMaskSize: "100% 100%",

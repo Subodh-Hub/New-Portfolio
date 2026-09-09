@@ -15,3 +15,13 @@ export const socialLinks = [
 
 export const PROFILE_IMAGE = "/images/profile/grayscale_subodh.png";
 export const PROFILE_REVEAL_IMAGE = "/images/profile/googles_subodh.png";
+export const LOGO_IMAGE = "/images/profile/subodh logo.png";
+
+export const greetings = [
+  { text: "Hello", font: "latin" },
+  { text: "Namaste", font: "latin" },
+  { text: "Bonjour", font: "latin" },
+  { text: "你好", font: "chinese" },
+  { text: "こんにちは", font: "japanese" },
+  { text: "مرحبا", font: "arabic" },
+] as const;

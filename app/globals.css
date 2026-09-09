@@ -79,8 +79,30 @@ section[id] {
   transform: translateX(-50%);
   width: var(--portrait-width);
   max-width: var(--portrait-max-width);
+  height: var(--portrait-height-desktop);
   z-index: 20;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.flashlight-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  overflow: visible;
+}
+
+.portrait-image {
+  margin-top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.image-grayscale {
+  filter: grayscale(100%);
+  display: block;
 }
 
 .floating-card-left {
@@ -103,18 +125,9 @@ section[id] {
   pointer-events: auto;
 }
 
-.flashlight-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-  cursor: crosshair;
-}
-
-.image-grayscale {
-  filter: grayscale(100%);
-  width: 100%;
-  height: auto;
-  display: block;
+.skills-section,
+.skills-section ~ * {
+  cursor: auto;
 }
 
 .skills-section {
@@ -359,18 +372,77 @@ section[id] {
 }
 
 @media (max-width: 768px) {
-  .services-heading {
-    grid-template-columns: 1fr;
-    align-items: start;
+  section[id] {
+    scroll-margin-top: 80px;
   }
 
-  .services-heading-copy {
-    grid-column: 1;
-    justify-self: end;
+  #home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    padding-top: 80px;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
+  .hero-name-bg {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-top: 1.5rem;
+    font-size: var(--hero-name-size-mobile);
+    z-index: 1;
+  }
+
+  .portrait-wrapper {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: var(--portrait-width-mobile);
+    max-width: 340px;
+    height: auto;
+    min-height: 52vh;
+    margin: 0.5rem auto 0;
+    overflow: visible;
+  }
+
+  .flashlight-container {
+    height: auto;
+    min-height: 52vh;
+    overflow: visible;
+  }
+
+  .portrait-image {
+    margin-top: 0;
+    height: auto;
+    max-height: 62vh;
+    width: 100%;
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  .floating-card-left {
+    position: relative;
+    top: auto;
+    left: auto;
+    max-width: none;
+    padding: 1.5rem 1.25rem 1rem;
+    z-index: 1;
+  }
+
+  .floating-card-left h1 {
+    font-size: 1.75rem;
+  }
+
+  .social-links-right {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0 1.25rem 2rem;
+    z-index: 1;
   }
 
   .skills-heading {
@@ -380,20 +452,64 @@ section[id] {
     padding-inline: 1.5rem;
   }
 
+  .skill-card {
+    min-width: 150px;
+  }
+
+  .services-heading {
+    grid-template-columns: 1fr;
+    align-items: start;
+    margin-bottom: 2.5rem;
+  }
+
+  .services-heading-copy {
+    grid-column: 1;
+    justify-self: stretch;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .services-heading h2 {
+    white-space: normal;
+  }
+
+  .services-heading p {
+    margin-top: 1rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    min-height: auto;
+  }
+
+  .service-card h3 {
+    margin-top: 1.5rem;
+  }
+
+  .service-tags {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
   .portrait-wrapper {
-    width: var(--portrait-width-mobile);
+    width: 48%;
+    height: 72vh;
   }
 
   .floating-card-left {
-    left: 5%;
-    max-width: 220px;
+    left: 4%;
+    max-width: 240px;
   }
 
   .social-links-right {
-    right: 5%;
+    right: 4%;
   }
 
-  .hero-name-bg {
-    font-size: var(--hero-name-size-mobile);
+  .services-heading h2 {
+    white-space: normal;
   }
 }
