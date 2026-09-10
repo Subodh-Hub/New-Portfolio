@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Subodh Rijal",
   title: "Subodh Rijal | MERN Developer",
   description:
-    "MERN Developer portfolio — architecting robust, scalable, and user-centric web applications.",
+    "Hi, I'm Subodh Rijal — MERN developer skilled in JavaScript, TypeScript, React, Next.js, Tailwind CSS, Node.js, SQL, and MongoDB.",
   jobTitle: "MERN Developer",
   locale: "en_US",
 } as const;
