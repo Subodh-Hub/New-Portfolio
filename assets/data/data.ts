@@ -58,3 +58,55 @@ export const services = [
     tags: ["Figma", "shadcn/ui", "React"],
   },
 ] as const;
+
+export const experiences = [
+  {
+    role: "Frontend Intern",
+    company: "Digihub Pvt. Ltd.",
+    urls: ["https://dghub.io/"],
+  },
+  {
+    role: "Frontend Developer",
+    company: "Webstudio Nepal",
+    urls: ["https://webstudionepal.com/"],
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Himalayan Safety Solution Nepal",
+    urls: ["https://himalayansafety.com.np/"],
+  },
+  {
+    role: "Coding Instructor & Full Stack Developer",
+    company: "KidNCode Nepal",
+    urls: ["https://kidncodenepal.com/", "https://kidncode.com/"],
+  },
+] as const;
+
+export const projects = [
+  {
+    title: "Hotel Crown Ridi Website",
+    url: "https://hotel-crown-ridi.netlify.app/",
+    image: "/images/project/hotecrown.png",
+  },
+  {
+    title: "EV Scooter Company Website",
+    url: "https://evscooter.netlify.app/",
+    image: "/images/project/ev_scooter.png",
+  },
+  {
+    title: "Blogging Application",
+    url: "https://github.com/Subodh-Hub/Blog-Application-Intern-Digihub-",
+    image: "/images/project/blog.png",
+  },
+
+  {
+    title: "ShipClub Website",
+    url: "https://shipclub.netlify.app/",
+    image: "/images/project/shipclub.png",
+  },
+  {
+    title: "Kid4AI",
+    url: "http://kid4.ai/",
+    image: "/images/project/kid4ai.png",
+  },
+] as const;

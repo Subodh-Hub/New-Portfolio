@@ -19,18 +19,19 @@ export const theme = {
   },
   layout: {
     portrait: {
-      width: "46%",
+      width: "50%",
       widthMobile: "78%",
-      maxWidth: "560px",
+      maxWidth: "640px",
       imageWidth: 640,
       imageHeight: 860,
       offsetTop: "0",
       offsetTopMobile: "0",
-      heightDesktop: "78vh",
+      heightDesktop: "88vh",
     },
     heroName: {
       fontSize: "11vw",
       fontSizeMobile: "14vw",
+      topDesktop: "18%",
     },
   },
   zIndex: {
@@ -73,4 +74,5 @@ export const cssVariables: Record<string, string> = {
   "--portrait-height-desktop": theme.layout.portrait.heightDesktop,
   "--hero-name-size": theme.layout.heroName.fontSize,
   "--hero-name-size-mobile": theme.layout.heroName.fontSizeMobile,
+  "--hero-name-top": theme.layout.heroName.topDesktop,
 };

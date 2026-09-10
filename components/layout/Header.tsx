@@ -101,11 +101,10 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed inset-x-0 top-0 flex items-center justify-between px-5 py-5 md:px-10 md:py-8 ${
-          menuOpen
+        className={`fixed inset-x-0 top-0 flex items-center justify-between px-5 py-5 md:px-10 md:py-8 ${menuOpen
             ? "z-[80] bg-white"
             : "z-50 bg-white/85 backdrop-blur-xl"
-        }`}
+          }`}
       >
         <div className="header-side-item flex items-center gap-3">
           <Image
@@ -130,9 +129,8 @@ export function Header() {
                 key={link.label}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`nav-link-item group relative flex h-5 items-center rounded-full text-black ${
-                  isActive ? "bg-[#d2ff00] px-3" : ""
-                }`}
+                className={`nav-link-item group relative flex h-5 items-center rounded-full text-black ${isActive ? "bg-[#d2ff00] px-3" : ""
+                  }`}
               >
                 <span className="h-5 overflow-hidden leading-5">
                   <span className="flex flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2 motion-reduce:transition-none">
@@ -151,7 +149,9 @@ export function Header() {
         </nav>
 
         <div className="header-side-item flex items-center gap-3">
-          <CTAButton className="hidden sm:flex">Let&apos;s Talk</CTAButton>
+          <CTAButton className="hidden sm:flex" href="#contact-talk">
+            Let&apos;s Talk
+          </CTAButton>
           <button
             type="button"
             className="relative z-[80] flex h-11 w-11 items-center justify-center rounded-full border border-black/15 bg-white md:hidden"
@@ -160,19 +160,16 @@ export function Header() {
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span
-              className={`absolute h-[2px] w-5 rounded-full bg-black transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-                menuOpen ? "translate-y-0 rotate-45" : "-translate-y-[7px] rotate-0"
-              }`}
+              className={`absolute h-[2px] w-5 rounded-full bg-black transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${menuOpen ? "translate-y-0 rotate-45" : "-translate-y-[7px] rotate-0"
+                }`}
             />
             <span
-              className={`absolute h-[2px] w-5 rounded-full bg-black transition-all duration-200 ${
-                menuOpen ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
-              }`}
+              className={`absolute h-[2px] w-5 rounded-full bg-black transition-all duration-200 ${menuOpen ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
+                }`}
             />
             <span
-              className={`absolute h-[2px] w-5 rounded-full bg-black transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-                menuOpen ? "translate-y-0 -rotate-45" : "translate-y-[7px] rotate-0"
-              }`}
+              className={`absolute h-[2px] w-5 rounded-full bg-black transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${menuOpen ? "translate-y-0 -rotate-45" : "translate-y-[7px] rotate-0"
+                }`}
             />
           </button>
         </div>
@@ -192,17 +189,15 @@ export function Header() {
                   key={link.label}
                   href={link.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`mobile-nav-link w-fit rounded-full px-4 py-1 text-4xl font-bold tracking-tight transition-colors ${
-                    isActive ? "bg-[#d2ff00] text-black" : "text-black"
-                  }`}
+                  className={`mobile-nav-link w-fit rounded-full px-4 py-1 text-4xl font-bold tracking-tight transition-colors ${isActive ? "bg-[#d2ff00] text-black" : "text-black"
+                    }`}
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
                   {"count" in link && link.count ? (
                     <span
-                      className={`ml-3 text-sm font-medium ${
-                        isActive ? "text-black/50" : "text-gray-400"
-                      }`}
+                      className={`ml-3 text-sm font-medium ${isActive ? "text-black/50" : "text-gray-400"
+                        }`}
                     >
                       [{link.count}]
                     </span>
@@ -211,7 +206,9 @@ export function Header() {
               );
             })}
           </nav>
-          <CTAButton className="w-full justify-center">Let&apos;s Talk</CTAButton>
+          <CTAButton className="w-full justify-center" href="#contact-talk">
+            Let&apos;s Talk
+          </CTAButton>
         </div>
       )}
     </>

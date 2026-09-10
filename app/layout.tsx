@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import {
-  Great_Vibes,
+  Borel,
   Hanken_Grotesk,
   Inter,
   Noto_Sans_Arabic,
@@ -8,6 +8,7 @@ import {
   Noto_Sans_SC,
 } from "next/font/google";
 import { cssVariables } from "@/lib/theme";
+import { AppToaster } from "@/components/ui/AppToaster";
 import "./globals.css";
 
 const hankenGrotesk = Hanken_Grotesk({
@@ -40,8 +41,8 @@ const notoAr = Noto_Sans_Arabic({
   weight: ["700"],
 });
 
-const script = Great_Vibes({
-  variable: "--font-script",
+const borel = Borel({
+  variable: "--font-borel",
   subsets: ["latin"],
   weight: "400",
 });
@@ -60,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hankenGrotesk.variable} ${inter.variable} ${notoSc.variable} ${notoJp.variable} ${notoAr.variable} ${script.variable} h-full antialiased`}
+      className={`${hankenGrotesk.variable} ${inter.variable} ${notoSc.variable} ${notoJp.variable} ${notoAr.variable} ${borel.variable} h-full antialiased`}
       style={cssVariables}
     >
       <body
@@ -68,6 +69,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <AppToaster />
       </body>
     </html>
   );

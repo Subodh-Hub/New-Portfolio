@@ -13,7 +13,9 @@ export function HeroBioCard() {
         Architecting robust web applications that are scalable, efficient, and
         user-centric. Focused on the modern web stack.
       </p>
-      <CTAButton hoverScale>Let&apos;s collaborate</CTAButton>
+      <CTAButton hoverScale href="#contact-collaborate">
+        Let&apos;s collaborate
+      </CTAButton>
     </div>
   );
 }

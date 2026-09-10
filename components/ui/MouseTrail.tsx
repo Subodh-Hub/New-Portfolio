@@ -1,23 +1,34 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { theme } from "@/lib/theme";
 
 const MAX_DOTS = theme.cursor.maxTrailDots;
 
 export function MouseTrail() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    if (!cursorRef.current) return;
+    const mobile = window.matchMedia(
+      "(max-width: 768px), (hover: none), (pointer: coarse)",
+    );
+    const sync = () => setEnabled(!mobile.matches);
+    sync();
+    mobile.addEventListener("change", sync);
+    return () => mobile.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled || !cursorRef.current) return;
     const cursorEl: HTMLDivElement = cursorRef.current;
     const skillsSection = document.getElementById("skills");
-
     const dots: HTMLDivElement[] = [];
 
     function updateCursor(e: MouseEvent) {
       const { clientX: x, clientY: y } = e;
-      const trailEnabled = !skillsSection || y < skillsSection.getBoundingClientRect().top;
+      const trailEnabled =
+        !skillsSection || y < skillsSection.getBoundingClientRect().top;
 
       cursorEl.style.display = trailEnabled ? "block" : "none";
       if (!trailEnabled) return;
@@ -75,7 +86,9 @@ export function MouseTrail() {
       });
       dots.forEach((dot) => dot.remove());
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return <div ref={cursorRef} className="cursor-main" />;
 }

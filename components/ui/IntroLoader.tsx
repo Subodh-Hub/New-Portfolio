@@ -6,11 +6,34 @@ import gsap from "gsap";
 import { greetings, LOGO_IMAGE } from "@/lib/data";
 
 const fontVar: Record<(typeof greetings)[number]["font"], string> = {
-  latin: "var(--font-script)",
+  latin: "var(--font-borel)",
   chinese: "var(--font-noto-sc)",
   japanese: "var(--font-noto-jp)",
   arabic: "var(--font-noto-ar)",
 };
+
+function lockScroll() {
+  const scrollY = window.scrollY;
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+  return scrollY;
+}
+
+function unlockScroll(scrollY: number) {
+  document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  window.scrollTo(0, scrollY);
+}
 
 export function IntroLoader() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -19,22 +42,44 @@ export function IntroLoader() {
   const [done, setDone] = useState(false);
 
   useLayoutEffect(() => {
+    if (done) return;
+
     const root = rootRef.current;
     const logo = logoRef.current;
     const word = wordRef.current;
     if (!root || !logo || !word) return;
 
-    document.body.style.overflow = "hidden";
+    const scrollY = lockScroll();
+    let finished = false;
+
+    const blockScroll = (event: Event) => {
+      event.preventDefault();
+    };
+
+    const release = () => {
+      if (finished) return;
+      finished = true;
+      root.removeEventListener("wheel", blockScroll);
+      root.removeEventListener("touchmove", blockScroll);
+      window.removeEventListener("wheel", blockScroll);
+      window.removeEventListener("touchmove", blockScroll);
+      unlockScroll(scrollY);
+    };
+
+    root.addEventListener("wheel", blockScroll, { passive: false });
+    root.addEventListener("touchmove", blockScroll, { passive: false });
+    window.addEventListener("wheel", blockScroll, { passive: false });
+    window.addEventListener("touchmove", blockScroll, { passive: false });
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.body.style.overflow = "";
+      release();
       setDone(true);
       return;
     }
 
     const tl = gsap.timeline({
       onComplete: () => {
-        document.body.style.overflow = "";
+        release();
         setDone(true);
       },
     });
@@ -98,16 +143,16 @@ export function IntroLoader() {
 
     return () => {
       tl.kill();
-      document.body.style.overflow = "";
+      release();
     };
-  }, []);
+  }, [done]);
 
   if (done) return null;
 
   return (
     <div
       ref={rootRef}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-white"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden overscroll-none bg-white"
       aria-hidden
     >
       <div ref={logoRef} className="absolute">

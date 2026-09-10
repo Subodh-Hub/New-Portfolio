@@ -94,7 +94,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-screen pt-[104px]">
+    <section ref={sectionRef} id="home" className="relative min-h-0 pt-[104px] md:min-h-screen">
       <HeroNameBg />
       <PortraitReveal />
       <HeroBioCard />

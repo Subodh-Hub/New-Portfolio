@@ -1,7 +1,12 @@
-Now make my Header,HeroSection, SkillsSection and ServicesSection responsivee
+https://api.emailjs.com/api/v1.0/email/send
+Request Method
+POST
+Status Code
+412 Precondition Failed
+Remote Address
+[2606:4700:20::681a:5dd]:443
+Referrer Policy
+strict-origin-when-cross-origin
 
-I want Interactive Hamburger Menu when itt is click my menu item should appear in full screen for mobile device
-
-I want my logo appear with the beautiful loading effect with gsap
-and after loadingg is complete make show Hello, Namaste, Bonjour,Nihau in chinese font, japanese font, arabic font one at a time effect
-
+Response
+Gmail_API: Invalid grant. Please reconnect your Gmail account
