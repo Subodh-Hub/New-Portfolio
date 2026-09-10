@@ -89,6 +89,11 @@ export const projects = [
     image: "/images/project/hotecrown.png",
   },
   {
+    title: "ShipClub Website",
+    url: "https://shipclub.netlify.app/",
+    image: "/images/project/shipclub.png",
+  },
+  {
     title: "EV Scooter Company Website",
     url: "https://evscooter.netlify.app/",
     image: "/images/project/ev_scooter.png",
@@ -97,12 +102,6 @@ export const projects = [
     title: "Blogging Application",
     url: "https://github.com/Subodh-Hub/Blog-Application-Intern-Digihub-",
     image: "/images/project/blog.png",
-  },
-
-  {
-    title: "ShipClub Website",
-    url: "https://shipclub.netlify.app/",
-    image: "/images/project/shipclub.png",
   },
   {
     title: "Kid4AI",

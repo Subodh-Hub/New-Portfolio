@@ -49,7 +49,7 @@ const borel = Borel({
 
 export const metadata: Metadata = {
   title: {
-    default: "Subodh Rijal — MERN Developer",
+    default: "Subodh Rijal | MERN Developer",
     template: "%s · Subodh Rijal",
   },
   description:
