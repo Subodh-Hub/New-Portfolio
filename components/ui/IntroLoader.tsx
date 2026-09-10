@@ -167,7 +167,7 @@ export function IntroLoader() {
       </div>
       <p
         ref={wordRef}
-        className="text-5xl font-normal tracking-normal text-black md:text-7xl"
+        className="text-5xl font-normal tracking-none text-black md:text-7xl"
       />
     </div>
   );

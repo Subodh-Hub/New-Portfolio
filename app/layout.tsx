@@ -8,6 +8,8 @@ import {
   Noto_Sans_SC,
 } from "next/font/google";
 import { cssVariables } from "@/lib/theme";
+import { getSiteUrl, siteConfig } from "@/lib/site";
+import { socialLinks } from "@/lib/data";
 import { AppToaster } from "@/components/ui/AppToaster";
 import "./globals.css";
 
@@ -47,13 +49,59 @@ const borel = Borel({
   weight: "400",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Subodh Rijal | MERN Developer",
+    default: siteConfig.title,
     template: "%s · Subodh Rijal",
   },
-  description:
-    "MERN Developer portfolio — architecting robust, scalable, and user-centric web applications.",
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteUrl }],
+  creator: siteConfig.name,
+  keywords: [
+    "Subodh Rijal",
+    "MERN Developer",
+    "Full Stack Developer",
+    "React",
+    "Next.js",
+    "Node.js",
+    "MongoDB",
+    "Portfolio",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    url: siteUrl,
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteUrl,
+  jobTitle: siteConfig.jobTitle,
+  description: siteConfig.description,
+  image: `${siteUrl}/images/profile/googles_subodh.png`,
+  sameAs: socialLinks.map((link) => link.href),
 };
 
 export default function RootLayout({
@@ -71,6 +119,10 @@ export default function RootLayout({
         className="min-h-full overflow-x-hidden bg-white"
         suppressHydrationWarning
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <AppToaster />
       </body>
