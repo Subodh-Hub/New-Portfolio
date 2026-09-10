@@ -33,6 +33,7 @@ export const socialLinks = [
 export const PROFILE_IMAGE = "/images/profile/grayscale_subodh.png";
 export const PROFILE_REVEAL_IMAGE = "/images/profile/googles_subodh.png";
 export const LOGO_IMAGE = "/images/profile/subodh logo.png";
+export const LOGO_IMAGE_WHITE = "/images/profile/subodh_white.png";
 
 export const greetings = [
   { text: "hello", font: "latin" },

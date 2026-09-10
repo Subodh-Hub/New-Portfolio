@@ -26,17 +26,19 @@ export function Header() {
     }
 
     const context = gsap.context(() => {
-      gsap.fromTo(
-        links,
-        { autoAlpha: 0, y: -10 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.09,
-          ease: "power3.out",
-        },
-      );
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        gsap.fromTo(
+          links,
+          { autoAlpha: 0, y: -10 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.09,
+            ease: "power3.out",
+          },
+        );
+      }
       gsap.fromTo(
         sideItems,
         { autoAlpha: 0 },
@@ -79,6 +81,13 @@ export function Header() {
   }, []);
 
   useEffect(() => {
+    const link = navLinks.find((l) => l.href === activeHref);
+    document.title = link
+      ? `${link.label} · Subodh Rijal`
+      : "Subodh Rijal — MERN Developer";
+  }, [activeHref]);
+
+  useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -101,26 +110,26 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed inset-x-0 top-0 flex items-center justify-between px-5 py-5 md:px-10 md:py-8 ${menuOpen
-            ? "z-[80] bg-white"
-            : "z-50 bg-white/85 backdrop-blur-xl"
+        className={`fixed inset-x-0 top-0 z-50 flex w-full max-w-[100vw] items-center justify-between overflow-x-clip px-4 py-4 sm:px-5 md:px-10 md:py-8 ${menuOpen
+          ? "z-[80] bg-white"
+          : "bg-white/85 backdrop-blur-xl"
           }`}
       >
-        <div className="header-side-item flex items-center gap-3">
+        <div className="header-side-item flex items-center">
           <Image
             src={LOGO_IMAGE}
             alt="Subodh Rijal"
             width={40}
             height={40}
-            className="h-9 w-9 object-contain md:h-10 md:w-10"
+            className="h-9 w-9 shrink-0 object-contain md:hidden"
           />
-          <div className="hidden items-center gap-2 rounded-full border border-border-light bg-white px-4 py-2 text-xs font-medium text-gray-700 shadow-sm sm:flex">
+          <div className="hidden items-center gap-2 rounded-full border border-border-light bg-white px-4 py-2 text-xs font-medium text-gray-700 shadow-sm md:flex">
             <span className="h-2 w-2 animate-pulse rounded-full bg-success" />
             Available for New Project
           </div>
         </div>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium text-gray-800 md:flex">
+        <nav className="absolute inset-x-0 top-1/2 mx-auto hidden w-fit -translate-y-1/2 items-center justify-center gap-8 text-sm font-medium text-gray-800 md:flex">
           {navLinks.map((link) => {
             const isActive = link.href === activeHref;
 
@@ -129,7 +138,7 @@ export function Header() {
                 key={link.label}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`nav-link-item group relative flex h-5 items-center rounded-full text-black ${isActive ? "bg-[#d2ff00] px-3" : ""
+                className={`nav-link-item group relative inline-flex h-8 items-center justify-center rounded-full text-black ${isActive ? "bg-[#d2ff00] px-3" : ""
                   }`}
               >
                 <span className="h-5 overflow-hidden leading-5">
@@ -148,8 +157,8 @@ export function Header() {
           })}
         </nav>
 
-        <div className="header-side-item flex items-center gap-3">
-          <CTAButton className="hidden sm:flex" href="#contact-talk">
+        <div className="header-side-item flex items-center justify-end">
+          <CTAButton className="hidden md:flex" href="#contact-talk">
             Let&apos;s Talk
           </CTAButton>
           <button
@@ -178,7 +187,7 @@ export function Header() {
       {menuOpen && (
         <div
           ref={menuRef}
-          className="fixed inset-0 z-[60] flex flex-col bg-white px-8 pb-10 pt-28 md:hidden"
+          className="fixed inset-0 z-[60] flex w-full max-w-[100vw] flex-col overflow-y-auto bg-white px-6 pb-10 pt-24 sm:px-8 md:hidden"
         >
           <nav className="flex flex-1 flex-col justify-center gap-6">
             {navLinks.map((link) => {
@@ -189,7 +198,7 @@ export function Header() {
                   key={link.label}
                   href={link.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`mobile-nav-link w-fit rounded-full px-4 py-1 text-4xl font-bold tracking-tight transition-colors ${isActive ? "bg-[#d2ff00] text-black" : "text-black"
+                  className={`mobile-nav-link w-fit max-w-full rounded-full px-3 py-1 text-3xl font-bold tracking-tight transition-colors sm:px-4 sm:text-4xl ${isActive ? "bg-[#d2ff00] text-black" : "text-black"
                     }`}
                   onClick={() => setMenuOpen(false)}
                 >

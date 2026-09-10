@@ -48,7 +48,10 @@ const borel = Borel({
 });
 
 export const metadata: Metadata = {
-  title: "Subodh Rijal - MERN Developer Portfolio",
+  title: {
+    default: "Subodh Rijal — MERN Developer",
+    template: "%s · Subodh Rijal",
+  },
   description:
     "MERN Developer portfolio — architecting robust, scalable, and user-centric web applications.",
 };
@@ -61,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hankenGrotesk.variable} ${inter.variable} ${notoSc.variable} ${notoJp.variable} ${notoAr.variable} ${borel.variable} h-full antialiased`}
+      className={`${hankenGrotesk.variable} ${inter.variable} ${notoSc.variable} ${notoJp.variable} ${notoAr.variable} ${borel.variable} h-full overflow-x-hidden antialiased`}
       style={cssVariables}
     >
       <body

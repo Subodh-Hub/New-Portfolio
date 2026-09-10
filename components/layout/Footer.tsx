@@ -1,4 +1,4 @@
-import { socialLinks, LOGO_IMAGE } from "@/lib/data";
+import { socialLinks, LOGO_IMAGE_WHITE } from "@/lib/data";
 import Image from "next/image";
 import { SocialIcon } from "@/components/icons/SocialIcons";
 
@@ -10,7 +10,7 @@ export function Footer() {
       <div className="footer-top">
         <a href="#home" className="footer-brand">
           <Image
-            src={LOGO_IMAGE}
+            src={LOGO_IMAGE_WHITE}
             alt="Subodh Rijal"
             width={40}
             height={40}

@@ -881,8 +881,15 @@ section[id] {
     left: auto;
     transform: none;
     margin-top: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     font-size: var(--hero-name-size-mobile);
     z-index: 1;
+  }
+
+  .hero-name-bg .ml-4 {
+    margin-left: 0.5rem;
   }
 
   .portrait-wrapper {
@@ -1062,6 +1069,10 @@ section[id] {
     justify-self: stretch;
     align-items: flex-start;
     text-align: left;
+  }
+
+  .contact-socials {
+    flex-wrap: wrap;
   }
 
   .footer-top,

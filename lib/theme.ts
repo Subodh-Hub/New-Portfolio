@@ -30,7 +30,7 @@ export const theme = {
     },
     heroName: {
       fontSize: "11vw",
-      fontSizeMobile: "14vw",
+      fontSizeMobile: "clamp(2.1rem, 11vw, 3.4rem)",
       topDesktop: "18%",
     },
   },
