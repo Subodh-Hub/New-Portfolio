@@ -110,12 +110,15 @@ export function IntroLoader() {
         filter: "blur(8px)",
         duration: 0.35,
         ease: "power2.in",
-      });
+      })
+      .add(document.fonts.ready);
 
     greetings.forEach((greeting) => {
       tl.call(() => {
         word.textContent = greeting.text;
         word.style.fontFamily = fontVar[greeting.font];
+        // Noto faces only ship 700; keep latin (Borel) at 400
+        word.style.fontWeight = greeting.font === "latin" ? "400" : "700";
         word.dir = greeting.font === "arabic" ? "rtl" : "ltr";
       })
         .fromTo(
@@ -167,7 +170,7 @@ export function IntroLoader() {
       </div>
       <p
         ref={wordRef}
-        className="text-5xl font-normal tracking-none text-black md:text-7xl"
+        className="text-5xl tracking-none text-black md:text-7xl"
       />
     </div>
   );
